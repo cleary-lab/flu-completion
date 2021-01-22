@@ -37,7 +37,8 @@ def cvx_nuc(A,mask):
 
 def calc_unobserved_rmse(X,X_hat,mask):
 	available = np.invert(np.isnan(X.values))
-	return (np.linalg.norm((X-X_hat).values[np.where((1-mask)*available)])/((1-mask)*available).sum())**.5
+	idx = np.where((1-mask)*available)
+	return np.average((X.values[idx]-X_hat[idx])**2)**.5
 
 def calc_unobserved_r2(X,X_hat,mask):
 	available = np.invert(np.isnan(X.values))
