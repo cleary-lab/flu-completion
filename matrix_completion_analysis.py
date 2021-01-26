@@ -93,7 +93,7 @@ def plot_heatmap(X,obs_frac,filename,combined_datasets=False):
 	df_mask = np.vstack([mask,mask])
 	fig, ax = plt.subplots(figsize=(8,12))
 	_=plt.title('%.1f%% of available entries unobserved; RMSE=%.3f; r^2=%.1f%%' % (100 - np.average(mask)*100, rmse, r2*100))
-	ax=sns.heatmap(df,mask=1-df_mask,ax=ax,cmap=sns.cm.rocket_r)
+	ax=sns.heatmap(df,mask=df_mask,ax=ax,cmap=sns.cm.rocket_r)
 	_=ax.axhline(X.shape[0],color='blue')
 	_=plt.tight_layout()
 	bottom, top = ax.get_ylim()
